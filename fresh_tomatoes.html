@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Meus Filmes favoritos!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+
+
+        /*centralizando texto da barra*/
+        .centralizado {
+
+            color: white !important;
+            float: none;
+            text-align:center;
+            margin-top: 10px;
+            pointer-events: none;  
+            font-size: 22px;
+            font-weight: bold;  
+        }
+
+        .barra{
+            background: #666666;
+            border: 0;
+        }
+
+        .cl_enredo{
+            position:absolute;
+            z-index: 1;
+            width:360px;
+            height:220px;
+            background-color: white;
+            opacity: 0.85;
+            border:2px solid #CCCCCC;
+            overflow:hidden; /* para que só apareça quando clicar*/
+            clear:both;
+        }
+
+        img{    
+            z-index: 2;       
+        }
+
+        h5{
+        	text-align: justify;
+        	margin: 10px 5px;
+        	line-height:18px;
+        }
+
+
+  
+                }
+    </style>
+
+    <script type="text/javascript" charset="utf-8">
+
+
+
+
+        // Pause the video when the modal is closed /Pausa o vídeo quando o modal está fechado
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+
+        // Start playing the video whenever the trailer modal is opened /Comece a reproduzir o vídeo sempre que o modal do trailer for aberto
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+
+
+
+        // Animate in the movies when the page loads /Animação dos filmes quando a página é carregada
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+
+        //animação do botão "enredo"
+        $(document).ready(function(){
+        	$(".cl_enredo").click(function(event){
+  				event.stopPropagation();
+			});
+
+            $(".cl_enredo").hide();
+            $(".open_div").click(function(){
+                $(this).toggleClass("active").next().slideToggle("fast");
+                return false;
+            });
+        });
+
+    
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class=" barra navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container ">
+          <div class=" centralizado navbar-header ">
+            <a class="centralizado navbar-brand" href="#">Minha Seleção de Filmes Favoritos</a> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="l9e96RAPMRM" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2liMyrS" width="260" height="342">
+    <h2>Policial em Apuros 2</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> Rookie Lawman Ben Barber deseja tornar-se um detetive, assim como James Payton, seu futuro cunhado. Relutantemente, James leva Ben para Miami em busca de pistas sobre um cartel de drogas. Durante a investigação, eles encontram evidências que implicam um respeitado empresário. Cabe a James e Ben provarem que o executivo carismático, Antonio Papa, é um violento senhor do crime que comanda o tráfico de drogas no Sul da Flórida.</h5>
+    </div>
+    
+</div>
+
+
+
+
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="HKVve_VSz58" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2A6vVua" width="260" height="342">
+    <h2>Gente Grande</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> A morte do treinador de basquete da infância de velhos amigos os reúne no mesmo lugar que celebraram um campeonato anos atrás. Os amigos, acompanhados de suas esposas e filhos, descobrem que idade não significa o mesmo que maturidade.</h5>
+    </div>
+    
+</div>
+
+
+
+
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Zb3ZXTIgQCg" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2uTWoVU" width="260" height="342">
+    <h2>A Era do Gelo</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> Vinte mil anos atrás, num mundo coberto de gelo, o mamute Manfred e a preguiça Sid resgatam um bebê humano órfão. Agora, os dois vão enfrentar muitas aventuras até devolver o filhote de gente à sua tribo, que migrou para um novo acampamento.</h5>
+    </div>
+    
+</div>
+
+
+
+
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Q9X-bAE8KTc" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2mAE8gA" width="260" height="342">
+    <h2>Deadpool</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> Wade Wilson é um ex-agente especial que passou a trabalhar como mercenário. Seu mundo é destruído quando um cientista maligno o tortura e o desfigura completamente. O experimento brutal transforma Wade em Deadpool, que ganha poderes especiais de cura e uma força aprimorada. Com a ajuda de aliados poderosos e um senso de humor mais desbocado e cínico do que nunca, o irreverente anti-herói usa habilidades e métodos violentos para se vingar do homem que quase acabou com a sua vida.</h5>
+    </div>
+    
+</div>
+
+
+
+
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="3OUytrApfFs" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2Lz5xxz" width="260" height="342">
+    <h2>Harold</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> Aos 13 anos de idade, Harold está em um período de transformações, mas não contava com uma calvície prematura. Para piorar, ele ainda está se adaptando à nova escola e se transforma no alvo das piadas dos alunos.</h5>
+    </div>
+    
+</div>
+
+
+
+
+<div class="enredoTeste col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ih7m3nO68_Y" data-toggle="modal" data-target="#trailer">
+    <img src="https://bit.ly/2Ls5ByU" width="260" height="342">
+    <h2>Madagascar</h2>
+<button type="button" class="open_div btn btn-default"">Enredo</button>
+    <div class="cl_enredo">
+       <h5> O leão Alex é o rei da selva urbana, a principal atração no zoológico de Nova York. Ele e seus melhores amigos - a zebra Marty, a girafa Melman e a hipopótamo fêmea Gloria - sempre viveram em cativeiro, felizes, com refeições regulares e um público para adorá-los. No entanto, Marty quer explorar o mundo e foge com a ajuda dos pinguins.</h5>
+    </div>
+    
+</div>
+
+
+
+
+    </div>
+    
+  </body>
+
+</html>
