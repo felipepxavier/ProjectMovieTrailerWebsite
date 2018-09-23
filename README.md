@@ -1,14 +1,14 @@
-#Projeto - Site de Trailer de filmes
+# Projeto - Site de Trailer de filmes
 
 Este programa cria uma página web, apresentando meus filmes favoritos.
 
-##Pré-requisitos
+## Pré-requisitos
 
 - Navegador instalado (Ex: o Google Chrome);
 - Python (versão 2.7.9) instalado em seu computador;
 - Download da pasta do projeto "Project_Movie_Trailer_Web";
 
-##Guia de Execução
+## Guia de Execução
 
 **Executando apenas a página HTML**
 1. Abra a pasta do projeto "Project_Movie_Trailer_Web" após o download; 
@@ -26,7 +26,7 @@ Este programa cria uma página web, apresentando meus filmes favoritos.
 2. Localize e abra a pasta do projeto pelo terminal;
 3. Execute o seguinte comando "python entertainment_center.py"
 
-##Autoria e contribuições
+## Autoria e contribuições
 
 Este projeto foi criado durante as aulas do programa **Nanodegree Full-Stack Web Developer**, oferecido pela Udacity, logo existem arquivos cedidos pela instituição, como o arquivo  "fresh_tomatoes.py", que eu efetuei apenas algumas alterações no CSS e JavaScript.
 
